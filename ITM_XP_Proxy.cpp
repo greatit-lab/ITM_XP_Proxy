@@ -9,7 +9,7 @@
 // Winsock 라이브러리 자동 링크
 #pragma comment(lib, "ws2_32.lib")
 
-const char* TARGET_IP = "10.1172.111.93";
+const char* TARGET_IP = "10.172.111.93";
 
 // 스레드에 넘겨줄 소켓 정보 구조체
 struct ProxyParam {
@@ -117,11 +117,11 @@ int main() {
     std::cout << "=================================================\n" << std::endl;
 
     // 1. DB 포트 포워딩 스레드 (15432 -> 5432)
-    int* dbPorts = new int[2]{ 15432, 5432 };
+    int* dbPorts = new int[2] { 15432, 5432 };
     CreateThread(NULL, 0, StartListener, dbPorts, 0, NULL);
 
     // 2. API 포트 포워딩 스레드 (18082 -> 8082)
-    int* apiPorts = new int[2]{ 18082, 8082 };
+    int* apiPorts = new int[2] { 18082, 8082 };
     CreateThread(NULL, 0, StartListener, apiPorts, 0, NULL);
 
     // 메인 스레드는 종료되지 않고 무한 대기
